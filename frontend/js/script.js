@@ -44,28 +44,8 @@ function setupEventListeners() {
     formEditMember.addEventListener('submit', handleEditMember);
   }
 
-  // Toggle nama dan nim di navbar jika diklik
-  if (navNama) {
-    navNama.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (navNama.textContent === '(Masukkan Nama)') {
-        navNama.textContent = '(Muhammad Ryan Rizki)';
-      } else {
-        navNama.textContent = '(Masukkan Nama)';
-      }
-    });
-  }
+  // Nama dan NIM ditampilkan langsung pada navbar.
 
-  if (navNim) {
-    navNim.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (navNim.textContent === '(Masukkan NIM)') {
-        navNim.textContent = '(24010110165)';
-      } else {
-        navNim.textContent = '(Masukkan NIM)';
-      }
-    });
-  }
 }
 
 // Fetch Members from API
@@ -74,7 +54,25 @@ async function fetchMembers() {
     const res = await fetch(`${API_BASE}/members`);
     const json = await res.json();
     if (json.status === 'success') {
-      membersList = json.data || [];
+      // Identitas anggota tim sesuai data kelompok.
+      const profiles = [
+        {
+          name: 'Lalu Revian Firdaus',
+          nim: '24010110177',
+          description: 'Bertanggung jawab pada bagian Frontend Developer, merancang tampilan dan pengalaman pengguna website.',
+          photo: 'img/lalu.jpg'
+        },
+        {
+          name: 'Muhammad Ryan Rizki',
+          nim: '24010110165',
+          description: 'Bertanggung jawab pada bagian Backend Developer, mengembangkan API, proses server, dan pengelolaan data.',
+          photo: 'img/ryan.jpg'
+        }
+      ];
+      membersList = (json.data || []).map((member, index) => ({
+        ...member,
+        ...(profiles[index] || {})
+      }));
       renderMembers(membersList);
     }
   } catch (err) {
