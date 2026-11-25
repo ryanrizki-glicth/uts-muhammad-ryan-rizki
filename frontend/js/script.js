@@ -84,47 +84,39 @@ async function fetchMembers() {
 
 // Render Cards to Grid
 function renderMembers(members) {
-  // Clear previous member cards (keep colAddCard)
-  const existingCols = memberCardGrid.querySelectorAll('.col-member-item');
-  existingCols.forEach(col => col.remove());
+  memberCardGrid.querySelectorAll('.col-member-item').forEach(col => col.remove());
 
   members.forEach(member => {
     const col = document.createElement('div');
     col.className = 'col col-member-item';
-
     const photoSrc = member.photo || 'img/default-avatar.svg';
 
     col.innerHTML = `
-      <div class="card h-100 member-card">
-        <img 
-          src="${escapeHtml(photoSrc)}" 
-          class="member-card-img" 
-          alt="${escapeHtml(member.name)}"
-          onerror="this.src='img/default-avatar.svg'"
+      <article class="card h-100 member-card">
+        <img
+          src="${escapeHtml(photoSrc)}"
+          class="member-card-img"
+          alt="Foto ${escapeHtml(member.name)}"
+          onerror="this.onerror=null;this.src='img/default-avatar.svg'"
         />
         <div class="member-card-body">
-          <div class="member-name">${escapeHtml(member.name)}</div>
-          <div class="member-desc">${escapeHtml(member.description)}</div>
+          <h2 class="member-name">${escapeHtml(member.name)}</h2>
+          <span class="member-nim">NIM: ${escapeHtml(member.nim || '-')}</span>
+          <p class="member-desc">${escapeHtml(member.description)}</p>
           <div class="btn-action-group">
-            <button 
-              type="button" 
-              class="btn btn-outline-primary btn-card-action"
-              onclick="openEditModal(${member.id})"
-            >
-              Edit
+            <button type="button" class="btn btn-outline-primary btn-card-action" data-action="edit" data-id="${Number(member.id)}">
+              <i class="bi bi-pencil-square me-1"></i>Edit
             </button>
-            <button 
-              type="button" 
-              class="btn btn-outline-danger btn-card-action"
-              onclick="deleteMemberItem(${member.id}, '${escapeHtml(member.name)}')"
-            >
-              Hapus
+            <button type="button" class="btn btn-outline-danger btn-card-action" data-action="delete" data-id="${Number(member.id)}">
+              <i class="bi bi-trash3 me-1"></i>Hapus
             </button>
           </div>
         </div>
-      </div>
+      </article>
     `;
 
+    col.querySelector('[data-action="edit"]').addEventListener('click', () => openEditModal(member.id));
+    col.querySelector('[data-action="delete"]').addEventListener('click', () => deleteMemberItem(member.id, member.name));
     memberCardGrid.appendChild(col);
   });
 }
