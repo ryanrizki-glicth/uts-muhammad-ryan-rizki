@@ -1,152 +1,132 @@
-/* Custom Styling untuk UTS Pem Web v2.0 */
-
-:root {
-  --primary-color: #0d6efd;
-  --dark-color: #212529;
-}
+/* CSS Persis Sesuai Gambar Referensi UTS Pem Web */
 
 body {
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  letter-spacing: -0.01em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #333333;
+  background-color: #ffffff;
 }
 
-.transition-theme {
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.font-sans {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-}
-
-.font-monospace {
-  font-family: 'JetBrains Mono', monospace !important;
-}
-
-/* Navbar Brand & Styling */
+/* Navbar */
 .navbar-brand {
-  letter-spacing: -0.02em;
+  font-size: 1.05rem !important;
+  font-weight: 400 !important;
+  color: #212529 !important;
 }
 
-.nav-link {
-  transition: all 0.2s ease-in-out;
+.navbar .nav-link {
+  font-size: 0.875rem !important;
+  color: #6c757d !important;
+  padding-left: 0.75rem !important;
+  padding-right: 0.75rem !important;
+  transition: color 0.15s ease-in-out;
 }
 
-.nav-link:hover {
-  opacity: 0.95;
+.navbar .nav-link:hover {
+  color: #212529 !important;
 }
 
-/* Avatar Box */
-.avatar-box {
-  width: 52px;
-  height: 52px;
-  background: linear-gradient(135deg, #0d6efd, #0b5ed7);
-  box-shadow: 0 4px 10px rgba(13, 110, 253, 0.25);
+.navbar .nav-link.active {
+  color: #212529 !important;
 }
 
-/* Stats Icon */
-.stat-icon {
-  width: 48px;
-  height: 48px;
+/* Alert Banner */
+.alert-success {
+  background-color: #d1e7dd !important;
+  color: #0f5132 !important;
+  border: 1px solid #badbcc !important;
 }
 
-/* Feature Cards Hover Lift */
-.hover-lift {
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+/* Member Cards */
+.member-card {
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #ffffff;
+  transition: box-shadow 0.2s ease;
+  min-height: 480px;
 }
 
-.hover-lift:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.12) !important;
+.member-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-.feature-icon {
-  width: 56px;
-  height: 56px;
+.member-card-img {
+  width: 100%;
+  height: 270px;
+  object-fit: cover;
+  object-position: center top;
+  background-color: #f8f9fa;
+  border-top-left-radius: 11px;
+  border-top-right-radius: 11px;
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+.member-card-body {
+  padding: 1.25rem 1.25rem 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
-/* Badge category colors */
-.badge-cat-bootstrap {
-  background-color: #e0e7ff;
-  color: #4338ca;
-  border: 1px solid #c7d2fe;
-}
-[data-bs-theme="dark"] .badge-cat-bootstrap {
-  background-color: rgba(67, 56, 202, 0.25);
-  color: #a5b4fc;
-  border-color: rgba(165, 180, 252, 0.2);
+.member-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #212529;
+  margin-bottom: 0.5rem;
 }
 
-.badge-cat-html {
-  background-color: #fee2e2;
-  color: #b91c1c;
-  border: 1px solid #fecaca;
-}
-[data-bs-theme="dark"] .badge-cat-html {
-  background-color: rgba(185, 28, 28, 0.25);
-  color: #fca5a5;
-  border-color: rgba(252, 165, 165, 0.2);
+.member-desc {
+  font-size: 0.8125rem;
+  color: #6c757d;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
 }
 
-.badge-cat-javascript {
-  background-color: #fef3c7;
-  color: #b45309;
-  border: 1px solid #fde68a;
-}
-[data-bs-theme="dark"] .badge-cat-javascript {
-  background-color: rgba(180, 83, 9, 0.25);
-  color: #fcd34d;
-  border-color: rgba(252, 211, 77, 0.2);
+/* Action Buttons (Edit / Hapus) */
+.btn-action-group {
+  margin-top: auto;
+  display: flex;
+  gap: 6px;
 }
 
-.badge-cat-backend {
-  background-color: #dcfce7;
-  color: #15803d;
-  border: 1px solid #bbf7d0;
-}
-[data-bs-theme="dark"] .badge-cat-backend {
-  background-color: rgba(21, 128, 61, 0.25);
-  color: #86efac;
-  border-color: rgba(134, 239, 172, 0.2);
+.btn-card-action {
+  font-size: 0.75rem !important;
+  padding: 3px 12px !important;
+  border-radius: 4px !important;
+  line-height: 1.4 !important;
 }
 
-.badge-cat-database {
-  background-color: #f1f5f9;
-  color: #334155;
-  border: 1px solid #e2e8f0;
-}
-[data-bs-theme="dark"] .badge-cat-database {
-  background-color: rgba(51, 65, 85, 0.3);
-  color: #cbd5e1;
-  border-color: rgba(203, 213, 225, 0.2);
+/* Card Add Member (Plus Button) */
+.card-add-member {
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  min-height: 480px;
 }
 
-/* Interactive Status Badge */
-.status-badge-btn {
+.btn-plus-circle {
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  background-color: #5cb85c;
+  border: none;
   cursor: pointer;
-  transition: transform 0.15s ease, opacity 0.15s ease;
-  user-select: none;
-}
-.status-badge-btn:hover {
-  transform: scale(1.05);
-  opacity: 0.9;
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-/* Print CSS */
-@media print {
-  .navbar, .hero-section .col-lg-7, #features, #btnScrollTop, .modal, .toast-container, button {
-    display: none !important;
-  }
-  body {
-    background: white !important;
-    color: black !important;
-  }
-  #tasks {
-    border: none !important;
-    background: white !important;
-  }
+.btn-plus-circle:hover {
+  background-color: #4cae4c;
+  transform: scale(1.06);
+}
+
+.btn-plus-circle i {
+  font-size: 46px;
+  line-height: 1;
+}
+
+/* Footer links */
+footer a {
+  transition: color 0.15s ease-in-out;
+}
+
+footer a:hover {
+  color: #212529 !important;
 }

@@ -1,95 +1,54 @@
 <!DOCTYPE html>
-<html lang="id" data-bs-theme="light">
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UTS Pem Web - Muhammad Ryan Rizki Iswadi (24010110165)</title>
+  <title>UTS Pem Web - Biodata Anggota</title>
   
-  <!-- Bootstrap 5.3.3 CSS CDN -->
+  <!-- Bootstrap 5.3 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-  <!-- Custom CSS -->
+  <!-- Custom CSS persis sesuai contoh UTS -->
   <link rel="stylesheet" href="css/style.css" />
 </head>
-<body class="d-flex flex-column min-vh-100 font-sans transition-theme">
+<body class="bg-white d-flex flex-column min-vh-100">
 
-  <!-- ================= NAVBAR BOOTSTRAP 5 ================= -->
-  <!-- Komponen Wajib Soal UTS: UTS Pem Web, Home, Features, Masukkan Nama, Masukkan NIM -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top border-bottom border-dark-subtle">
-    <div class="container">
+  <!-- ================= TOP NAVBAR ================= -->
+  <!-- Persis sesuai gambar referensi: UTS Pem Web, Home, Features, (Masukkan Nama), (Masukkan NIM) -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white pt-3 pb-2">
+    <div class="container-fluid px-4 px-lg-5">
       
-      <!-- 1. Brand Logo: UTS Pem Web -->
-      <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#home">
-        <span class="badge bg-primary p-2 rounded-3 shadow-sm">
-          <i class="bi bi-code-slash text-white"></i>
-        </span>
-        <span class="fs-5 tracking-tight">UTS Pem Web</span>
-        <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill text-[10px] px-2 py-0.5">v2.0</span>
-      </a>
+      <!-- Brand Logo / Title -->
+      <a class="navbar-brand text-dark fw-normal fs-5 me-4" href="#home">UTS Pem Web</a>
 
       <!-- Hamburger Button (Mobile Responsive Toggler) -->
       <button 
-        class="navbar-toggler border-0 shadow-none" 
+        class="navbar-toggler border-0 shadow-none p-1" 
         type="button" 
         data-bs-toggle="collapse" 
-        data-bs-target="#navbarUTS" 
-        aria-controls="navbarUTS" 
+        data-bs-target="#navMenu" 
+        aria-controls="navMenu" 
         aria-expanded="false" 
         aria-label="Toggle navigation"
       >
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <!-- Navbar Content -->
-      <div class="collapse navbar-collapse" id="navbarUTS">
-        <!-- 2. Menu Navigasi: Home & Features -->
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <!-- Navbar Links -->
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-lg-3">
           <li class="nav-item">
-            <a class="nav-link active fw-medium px-3" aria-current="page" href="#home">
-              <i class="bi bi-house-door me-1"></i>Home
-            </a>
+            <a class="nav-link text-secondary active px-0" aria-current="page" href="#home">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fw-medium px-3" href="#features">
-              <i class="bi bi-grid me-1"></i>Features
-            </a>
+            <a class="nav-link text-secondary px-0" href="#features">Features</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fw-medium px-3" href="#tasks">
-              <i class="bi bi-card-checklist me-1"></i>Daftar Tugas
-            </a>
+            <a class="nav-link text-secondary px-0" href="#" id="navNama" title="Klik untuk ganti teks">(Masukkan Nama)</a>
           </li>
-        </ul>
-
-        <!-- 3. Menu Kanan: Masukkan Nama, Masukkan NIM, & Theme Switcher -->
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-2">
-          <!-- Masukkan Nama -->
-          <li class="nav-item my-1 my-lg-0">
-            <div class="nav-link px-3 py-1.5 rounded-pill bg-secondary bg-opacity-25 text-white d-flex align-items-center gap-2 border border-secondary border-opacity-25">
-              <i class="bi bi-person-fill text-info"></i>
-              <span id="navTextNama">Masukkan Nama: <strong class="text-info fw-bold">Muhammad Ryan Rizki Iswadi</strong></span>
-            </div>
-          </li>
-          
-          <!-- Masukkan NIM -->
-          <li class="nav-item my-1 my-lg-0">
-            <div class="nav-link px-3 py-1.5 rounded-pill bg-secondary bg-opacity-25 text-white d-flex align-items-center gap-2 border border-secondary border-opacity-25">
-              <i class="bi bi-card-text text-warning"></i>
-              <span id="navTextNim">Masukkan NIM: <strong class="text-warning fw-bold font-monospace">24010110165</strong></span>
-            </div>
-          </li>
-
-          <!-- Theme Switcher (Dark / Light Mode) -->
-          <li class="nav-item ms-lg-1">
-            <button id="btnThemeToggle" class="btn btn-outline-light btn-sm rounded-pill px-2.5 py-1.5 d-flex align-items-center gap-1.5" title="Ganti Tema (Gelap / Terang)">
-              <i id="themeIcon" class="bi bi-moon-stars-fill text-warning"></i>
-              <span class="d-none d-xl-inline small">Mode</span>
-            </button>
+          <li class="nav-item">
+            <a class="nav-link text-secondary px-0" href="#" id="navNim" title="Klik untuk ganti teks">(Masukkan NIM)</a>
           </li>
         </ul>
       </div>
@@ -97,330 +56,107 @@
     </div>
   </nav>
 
-  <!-- ================= HERO SECTION ================= -->
-  <header id="home" class="py-5 border-bottom shadow-sm position-relative hero-section">
-    <div class="container py-4">
-      <div class="row align-items-center g-5">
+  <!-- ================= MAIN CONTENT CONTAINER ================= -->
+  <main class="flex-grow-1 py-3">
+    <div class="container-fluid px-4 px-lg-5" style="max-width: 1140px;">
+      
+      <!-- Alert Banner: "Biodata berhasil diperbarui." -->
+      <div id="alertBanner" class="alert alert-success alert-dismissible fade show border-0 d-flex justify-content-between align-items-center mb-4 py-2 px-3 rounded-2" role="alert">
+        <span id="alertMessage" class="small fw-normal">Biodata berhasil diperbarui.</span>
+        <button type="button" class="btn-close shadow-none p-2" data-bs-dismiss="alert" aria-label="Close" style="font-size: 11px;"></button>
+      </div>
+
+      <!-- Card Grid: 3 Kolom Sesuai Gambar Referensi -->
+      <div class="row row-cols-1 row-cols-md-3 g-4" id="memberCardGrid">
         
-        <!-- Kolom Teks Pengantar -->
-        <div class="col-lg-7 text-center text-lg-start">
-          <div class="d-inline-flex align-items-center gap-2 badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-2 rounded-pill fw-semibold mb-3">
-            <i class="bi bi-award-fill"></i>
-            <span>Ujian Tengah Semester &bull; Pemrograman Web</span>
-          </div>
-
-          <h1 class="display-5 fw-bold lh-sm mb-3">
-            Implementasi Navbar &amp; Web <br/>
-            <span class="text-primary">Bootstrap 5 + REST API</span>
-          </h1>
-
-          <p class="lead text-secondary mb-4">
-            Aplikasi web fullstack responsif yang mengimplementasikan seluruh ketentuan soal UTS dengan arsitektur frontend modern (Bootstrap 5) dan backend REST API (Python Flask &amp; SQLite).
-          </p>
-
-          <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-lg-start">
-            <a href="#tasks" class="btn btn-primary px-4 py-2.5 rounded-pill fw-semibold shadow-sm d-inline-flex align-items-center gap-2">
-              <i class="bi bi-card-checklist"></i>
-              <span>Kelola Daftar Tugas</span>
-            </a>
-            <a href="/api/tasks/export/csv" class="btn btn-outline-success px-4 py-2.5 rounded-pill fw-medium d-inline-flex align-items-center gap-2">
-              <i class="bi bi-file-earmark-spreadsheet"></i>
-              <span>Export CSV</span>
-            </a>
-            <button id="btnSwitchFormat" class="btn btn-outline-secondary px-3 py-2 rounded-pill fw-medium" title="Ubah format teks di navbar">
-              <i class="bi bi-arrow-left-right me-1"></i> Format Teks Navbar
+        <!-- CARD 1: Tombol Tambah Anggota (+) -->
+        <div class="col" id="colAddCard">
+          <div class="card h-100 border rounded-3 bg-white d-flex align-items-center justify-content-center p-4 card-add-member" style="min-height: 480px;">
+            <button 
+              type="button" 
+              class="btn-plus-circle d-flex align-items-center justify-content-center shadow-sm"
+              data-bs-toggle="modal" 
+              data-bs-target="#modalAddMember"
+              title="Tambah Anggota Biodata Baru"
+            >
+              <i class="bi bi-plus text-white"></i>
             </button>
           </div>
         </div>
 
-        <!-- Kolom Kartu Identitas Mahasiswa -->
-        <div class="col-lg-5">
-          <div class="card border-0 shadow rounded-4 overflow-hidden">
-            <div class="card-header bg-dark text-white py-3 px-4 d-flex justify-content-between align-items-center">
-              <div class="d-flex align-items-center gap-2">
-                <i class="bi bi-person-vcard text-primary fs-5"></i>
-                <span class="fw-bold">Identitas Mahasiswa</span>
-              </div>
-              <span class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-25 px-2.5 py-1 rounded-pill">
-                Verified UTS
-              </span>
-            </div>
-            <div class="card-body p-4">
-              <div class="d-flex align-items-center gap-3 mb-4 pb-3 border-bottom">
-                <div class="avatar-box bg-primary text-white rounded-circle d-flex align-items-center justify-center fw-bold fs-4">
-                  MR
-                </div>
-                <div>
-                  <h5 class="fw-bold mb-0">Muhammad Ryan Rizki Iswadi</h5>
-                  <span class="text-secondary small">Mahasiswa Ilmu Komputer</span>
-                </div>
-              </div>
-
-              <div class="row g-3 text-sm">
-                <div class="col-6">
-                  <small class="text-secondary d-block text-uppercase fw-semibold" style="font-size: 11px;">NIM</small>
-                  <span class="font-monospace fw-bold text-primary fs-6">24010110165</span>
-                </div>
-                <div class="col-6">
-                  <small class="text-secondary d-block text-uppercase fw-semibold" style="font-size: 11px;">Mata Kuliah</small>
-                  <span class="fw-semibold">Pemrograman Web</span>
-                </div>
-                <div class="col-6">
-                  <small class="text-secondary d-block text-uppercase fw-semibold" style="font-size: 11px;">Tipe Ujian</small>
-                  <span class="badge bg-warning text-dark fw-bold">UTS Praktik Web</span>
-                </div>
-                <div class="col-6">
-                  <small class="text-secondary d-block text-uppercase fw-semibold" style="font-size: 11px;">Tech Stack</small>
-                  <span class="badge bg-info text-dark">Bootstrap 5 + Flask</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <!-- CARD 2 & CARD 3 DILENGKAPI DINAMIS DARI DATABASE / REST API -->
+        <!-- Template kartu akan di-render oleh script.js -->
 
       </div>
+
     </div>
-  </header>
+  </main>
 
-  <!-- ================= STATISTIK COUNTER CARDS ================= -->
-  <section class="py-4 border-bottom bg-body-tertiary">
-    <div class="container">
-      <div class="row g-3">
-        <div class="col-md-4">
-          <div class="card border-0 shadow-sm rounded-4 p-3 d-flex flex-row align-items-center justify-content-between">
-            <div>
-              <span class="text-secondary small text-uppercase fw-bold">Total Tugas UTS</span>
-              <h3 id="statTotal" class="fw-bold mb-0 text-primary mt-1">0</h3>
-            </div>
-            <div class="stat-icon bg-primary bg-opacity-10 text-primary rounded-3 d-flex align-items-center justify-center">
-              <i class="bi bi-stack fs-4"></i>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card border-0 shadow-sm rounded-4 p-3 d-flex flex-row align-items-center justify-content-between">
-            <div>
-              <span class="text-secondary small text-uppercase fw-bold">Tugas Selesai</span>
-              <h3 id="statCompleted" class="fw-bold mb-0 text-success mt-1">0</h3>
-            </div>
-            <div class="stat-icon bg-success bg-opacity-10 text-success rounded-3 d-flex align-items-center justify-center">
-              <i class="bi bi-check2-circle fs-4"></i>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card border-0 shadow-sm rounded-4 p-3 d-flex flex-row align-items-center justify-content-between">
-            <div>
-              <span class="text-secondary small text-uppercase fw-bold">Sedang Dikerjakan</span>
-              <h3 id="statInProgress" class="fw-bold mb-0 text-warning mt-1">0</h3>
-            </div>
-            <div class="stat-icon bg-warning bg-opacity-10 text-warning rounded-3 d-flex align-items-center justify-center">
-              <i class="bi bi-hourglass-split fs-4"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= FEATURES SECTION ================= -->
-  <section id="features" class="py-5">
-    <div class="container py-4">
-      <div class="text-center max-w-700 mx-auto mb-5">
-        <span class="badge bg-primary px-3 py-1 rounded-pill text-uppercase mb-2 fw-semibold" style="font-size: 11px;">Features Website</span>
-        <h2 class="fw-bold mb-2">Desain Sederhana, Rapi &amp; Responsif</h2>
-        <p class="text-secondary">Arsitektur web dibangun sesuai petunjuk referensi UTS dengan fleksibilitas interaksi frontend:</p>
-      </div>
-
-      <div class="row g-4">
-        <!-- Feature 1 -->
-        <div class="col-md-4">
-          <div class="card h-100 border-0 shadow-sm rounded-4 p-4 hover-lift">
-            <div class="feature-icon bg-primary bg-opacity-10 text-primary rounded-3 d-inline-flex align-items-center justify-center mb-3">
-              <i class="bi bi-layout-text-window-reverse fs-3"></i>
-            </div>
-            <h5 class="fw-bold mb-2">Navbar Bootstrap 5 Lengkap</h5>
-            <p class="text-secondary small mb-0">
-              Memuat seluruh menu: <strong>UTS Pem Web</strong>, <strong>Home</strong>, <strong>Features</strong>, serta identitas <strong>Nama</strong> &amp; <strong>NIM</strong> di sudut kanan navbar.
-            </p>
-          </div>
-        </div>
-
-        <!-- Feature 2 -->
-        <div class="col-md-4">
-          <div class="card h-100 border-0 shadow-sm rounded-4 p-4 hover-lift">
-            <div class="feature-icon bg-success bg-opacity-10 text-success rounded-3 d-inline-flex align-items-center justify-center mb-3">
-              <i class="bi bi-moon-stars fs-3"></i>
-            </div>
-            <h5 class="fw-bold mb-2">Dukungan Dark &amp; Light Mode</h5>
-            <p class="text-secondary small mb-0">
-              Pengalihan tema gelap dan terang instan berbasis atribut bawaan <code>data-bs-theme</code> Bootstrap 5.3 dengan penyimpanan preferensi di localStorage.
-            </p>
-          </div>
-        </div>
-
-        <!-- Feature 3 -->
-        <div class="col-md-4">
-          <div class="card h-100 border-0 shadow-sm rounded-4 p-4 hover-lift">
-            <div class="feature-icon bg-warning bg-opacity-10 text-warning rounded-3 d-inline-flex align-items-center justify-center mb-3">
-              <i class="bi bi-hdd-network fs-3"></i>
-            </div>
-            <h5 class="fw-bold mb-2">Backend REST API &amp; SQLite</h5>
-            <p class="text-secondary small mb-0">
-              Menghubungkan frontend ke backend Python Flask untuk mencatat, memperbarui status, dan menghapus tugas secara asinkron tanpa reload halaman.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= TASKS SECTION (INTERACTIVE FRONTEND) ================= -->
-  <section id="tasks" class="py-5 border-top border-bottom bg-body-tertiary">
-    <div class="container py-4">
+  <!-- ================= FOOTER ================= -->
+  <!-- Persis sesuai gambar referensi: Links di atas, garis pemisah, dan teks copyright di bawah -->
+  <footer class="mt-auto py-4 bg-white text-center">
+    <div class="container-fluid px-4 px-lg-5" style="max-width: 1140px;">
       
-      <!-- Section Header -->
-      <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 mb-4">
-        <div>
-          <span class="badge bg-primary px-3 py-1 rounded-pill text-uppercase mb-2 fw-semibold" style="font-size: 11px;">CRUD Asinkron</span>
-          <h2 class="fw-bold mb-1">Daftar Tugas &amp; Catatan UTS</h2>
-          <p class="text-secondary small mb-0">Klik pada status tugas untuk mengubah status ("Selesai" &harr; "Sedang Dikerjakan").</p>
-        </div>
-        
-        <div class="d-flex align-items-center gap-2">
-          <button class="btn btn-outline-secondary rounded-pill px-3 py-2 d-inline-flex align-items-center gap-1.5" onclick="window.print()">
-            <i class="bi bi-printer"></i>
-            <span class="d-none d-sm-inline">Cetak</span>
-          </button>
-          <button class="btn btn-primary rounded-pill px-4 py-2 d-inline-flex align-items-center gap-2 shadow-sm" data-bs-toggle="modal" data-bs-target="#addTaskModal">
-            <i class="bi bi-plus-lg"></i>
-            <span>Tambah Tugas</span>
-          </button>
-        </div>
+      <!-- Footer Nav Links -->
+      <div class="d-flex justify-content-center flex-wrap gap-4 mb-3 small text-secondary">
+        <a href="#home" class="text-secondary text-decoration-none">Home</a>
+        <a href="#features" class="text-secondary text-decoration-none">Features</a>
+        <a href="#pricing" class="text-secondary text-decoration-none">Pricing</a>
+        <a href="#faqs" class="text-secondary text-decoration-none">FAQs</a>
+        <a href="#about" class="text-secondary text-decoration-none">About</a>
       </div>
 
-      <!-- Live Search & Category Filter Pills -->
-      <div class="card border-0 shadow-sm rounded-4 p-3 mb-4">
-        <div class="row g-3 align-items-center">
-          <div class="col-lg-5">
-            <div class="input-group">
-              <span class="input-group-text bg-transparent border-end-0">
-                <i class="bi bi-search text-secondary"></i>
-              </span>
-              <input 
-                type="text" 
-                id="taskSearchInput" 
-                class="form-control border-start-0" 
-                placeholder="Cari judul tugas, kategori, atau deskripsi..."
-              />
-            </div>
-          </div>
-          
-          <div class="col-lg-7">
-            <div class="d-flex align-items-center gap-1.5 flex-wrap" id="categoryPillContainer">
-              <button class="btn btn-sm btn-primary rounded-pill px-3 category-pill active" data-cat="Semua">Semua</button>
-              <button class="btn btn-sm btn-outline-secondary rounded-pill px-3 category-pill" data-cat="Bootstrap">Bootstrap</button>
-              <button class="btn btn-sm btn-outline-secondary rounded-pill px-3 category-pill" data-cat="HTML & CSS">HTML &amp; CSS</button>
-              <button class="btn btn-sm btn-outline-secondary rounded-pill px-3 category-pill" data-cat="JavaScript">JavaScript</button>
-              <button class="btn btn-sm btn-outline-secondary rounded-pill px-3 category-pill" data-cat="Backend">Backend</button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <!-- Divider line -->
+      <hr class="my-4 text-muted opacity-25">
 
-      <!-- Counter Bar -->
-      <div class="d-flex justify-content-between align-items-center px-1 mb-2 small text-secondary">
-        <span id="taskCounterText">Menampilkan 0 tugas</span>
-        <span class="d-none d-sm-inline"><i class="bi bi-info-circle me-1"></i>Klik ikon mata untuk melihat rincian</span>
-      </div>
-
-      <!-- Task Table -->
-      <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
-        <div class="table-responsive">
-          <table class="table table-hover align-middle mb-0">
-            <thead class="table-light">
-              <tr class="text-uppercase small text-secondary" style="font-size: 11px;">
-                <th class="py-3 px-4">#</th>
-                <th class="py-3 px-4">Judul Tugas</th>
-                <th class="py-3 px-4">Kategori</th>
-                <th class="py-3 px-4">Deskripsi</th>
-                <th class="py-3 px-4">Status (Klik Ubah)</th>
-                <th class="py-3 px-4 text-center">Aksi</th>
-              </tr>
-            </thead>
-            <tbody id="taskTableBody">
-              <!-- Baris tabel di-generate oleh JS -->
-            </tbody>
-          </table>
-        </div>
-        
-        <!-- Loading State -->
-        <div id="loadingTasks" class="py-5 text-center text-secondary">
-          <div class="spinner-border spinner-border-sm text-primary mb-2" role="status"></div>
-          <p class="small mb-0">Memuat data dari backend REST API...</p>
-        </div>
-
-        <!-- Empty State -->
-        <div id="emptyTasks" class="py-5 text-center text-secondary d-none">
-          <i class="bi bi-inbox fs-2 mb-2 d-block"></i>
-          <p class="small mb-0">Tidak ada tugas yang cocok dengan filter atau pencarian.</p>
-        </div>
-      </div>
+      <!-- Copyright Statement -->
+      <p class="small text-muted mb-0" id="footerCopyright">
+        &copy; 2025 Dibuat Sejujurnya Oleh Team (Muhammad Ryan Rizki) dan (Lalu Revian Firdaus) Tanpa Mencotek dari Tim Lain
+      </p>
 
     </div>
-  </section>
+  </footer>
 
-  <!-- ================= MODAL TAMBAH TUGAS ================= -->
-  <div class="modal fade" id="addTaskModal" tabindex="-1" aria-labelledby="addTaskModalLabel" aria-hidden="true">
+  <!-- ================= MODAL TAMBAH BIODATA ANGGOTA ================= -->
+  <div class="modal fade" id="modalAddMember" tabindex="-1" aria-labelledby="modalAddMemberLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content rounded-4 border-0 shadow">
+      <div class="modal-content rounded-3 border-0 shadow">
         
         <div class="modal-header border-bottom py-3 px-4">
-          <h5 class="modal-title fw-bold" id="addTaskModalLabel">
-            <i class="bi bi-file-earmark-plus text-primary me-2"></i>Tambah Tugas UTS
-          </h5>
+          <h5 class="modal-title fs-6 fw-bold" id="modalAddMemberLabel">Tambah Biodata Anggota</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
-        <form id="taskForm">
+        <form id="formAddMember">
           <div class="modal-body p-4 space-y-3">
             <div class="mb-3">
-              <label class="form-label small fw-semibold text-secondary text-uppercase">Nama Mahasiswa</label>
-              <input type="text" class="form-control" name="name" value="Muhammad Ryan Rizki Iswadi" readonly>
+              <label class="form-label small fw-semibold text-secondary">Nama Lengkap</label>
+              <input type="text" class="form-control" name="name" required placeholder="Contoh: andi agus salim">
             </div>
 
             <div class="mb-3">
-              <label class="form-label small fw-semibold text-secondary text-uppercase">NIM</label>
-              <input type="text" class="form-control font-monospace" name="nim" value="24010110165" readonly>
+              <label class="form-label small fw-semibold text-secondary">NIM</label>
+              <input type="text" class="form-control" name="nim" required placeholder="Contoh: 12.11.6018">
             </div>
 
             <div class="mb-3">
-              <label class="form-label small fw-semibold text-uppercase">Judul Tugas <span class="text-danger">*</span></label>
-              <input type="text" class="form-control" name="title" required placeholder="Contoh: Pembuatan Form Kontak">
+              <label class="form-label small fw-semibold text-secondary">Deskripsi &amp; Tugas UTS</label>
+              <textarea class="form-control" name="description" rows="3" required placeholder="Contoh: dengan NIM 12.11.6018 merupakan pegawai dan mempunyai tugas mengerjakan back-end pada UTS ini"></textarea>
             </div>
 
             <div class="mb-3">
-              <label class="form-label small fw-semibold text-uppercase">Kategori</label>
-              <select class="form-select" name="category">
-                <option value="Bootstrap" selected>Bootstrap 5</option>
-                <option value="HTML & CSS">HTML &amp; CSS</option>
-                <option value="JavaScript">JavaScript</option>
-                <option value="Backend">Backend API</option>
-                <option value="Database">Database SQLite</option>
+              <label class="form-label small fw-semibold text-secondary">Pilih Foto Anggota</label>
+              <select class="form-select" name="photoSelect" id="photoSelect">
+                <option value="img/lalu.jpg">Foto Lalu Revian Firdaus</option>
+                <option value="img/ryan.jpg">Foto Muhammad Ryan Rizki</option>
+                <option value="img/default-avatar.svg" selected>Avatar Default</option>
               </select>
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label small fw-semibold text-uppercase">Deskripsi / Catatan <span class="text-danger">*</span></label>
-              <textarea class="form-control" name="description" rows="3" required placeholder="Jelaskan apa yang dikerjakan pada tugas ini..."></textarea>
             </div>
           </div>
 
-          <div class="modal-footer border-top px-4 py-3">
-            <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Batal</button>
-            <button type="submit" id="btnSubmitTask" class="btn btn-primary rounded-pill px-4 fw-semibold">
-              <i class="bi bi-save me-1"></i> Simpan Tugas
-            </button>
+          <div class="modal-footer border-top px-4 py-2">
+            <button type="button" class="btn btn-sm btn-light border px-3" data-bs-dismiss="modal">Batal</button>
+            <button type="submit" id="btnSubmitAdd" class="btn btn-sm btn-primary px-3">Simpan Biodata</button>
           </div>
         </form>
 
@@ -428,71 +164,55 @@
     </div>
   </div>
 
-  <!-- ================= MODAL DETAIL TUGAS ================= -->
-  <div class="modal fade" id="detailTaskModal" tabindex="-1" aria-hidden="true">
+  <!-- ================= MODAL EDIT BIODATA ANGGOTA ================= -->
+  <div class="modal fade" id="modalEditMember" tabindex="-1" aria-labelledby="modalEditMemberLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content rounded-4 border-0 shadow">
+      <div class="modal-content rounded-3 border-0 shadow">
+        
         <div class="modal-header border-bottom py-3 px-4">
-          <h5 class="modal-title fw-bold">
-            <i class="bi bi-info-circle text-primary me-2"></i>Rincian Tugas UTS
-          </h5>
+          <h5 class="modal-title fs-6 fw-bold" id="modalEditMemberLabel">Edit Biodata Anggota</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body p-4" id="detailModalBody">
-          <!-- Diisi via JS -->
-        </div>
-        <div class="modal-footer border-top px-4 py-3">
-          <button type="button" class="btn btn-primary rounded-pill px-4" data-bs-dismiss="modal">Tutup</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- ================= MODAL KONFIRMASI HAPUS ================= -->
-  <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-sm">
-      <div class="modal-content rounded-4 border-0 shadow text-center p-3">
-        <div class="modal-body p-3">
-          <div class="w-12 h-12 mx-auto rounded-circle bg-danger bg-opacity-10 text-danger d-flex align-items-center justify-center fs-2 mb-3" style="width: 56px; height: 56px;">
-            <i class="bi bi-exclamation-triangle"></i>
+        <form id="formEditMember">
+          <input type="hidden" name="id" id="editMemberId">
+          <div class="modal-body p-4 space-y-3">
+            <div class="mb-3">
+              <label class="form-label small fw-semibold text-secondary">Nama Lengkap</label>
+              <input type="text" class="form-control" name="name" id="editName" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label small fw-semibold text-secondary">NIM</label>
+              <input type="text" class="form-control" name="nim" id="editNim" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label small fw-semibold text-secondary">Deskripsi &amp; Tugas UTS</label>
+              <textarea class="form-control" name="description" id="editDescription" rows="3" required></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label small fw-semibold text-secondary">Pilih Foto</label>
+              <select class="form-select" name="photo" id="editPhoto">
+                <option value="img/lalu.jpg">Foto Lalu Revian Firdaus</option>
+                <option value="img/ryan.jpg">Foto Muhammad Ryan Rizki</option>
+                <option value="img/default-avatar.svg">Avatar Default</option>
+              </select>
+            </div>
           </div>
-          <h6 class="fw-bold mb-1">Hapus Tugas Ini?</h6>
-          <p class="text-secondary small mb-3">Tindakan ini tidak dapat dibatalkan.</p>
-          <div class="d-flex justify-content-center gap-2">
-            <button type="button" class="btn btn-light rounded-pill px-3 btn-sm" data-bs-dismiss="modal">Batal</button>
-            <button type="button" id="btnConfirmDelete" class="btn btn-danger rounded-pill px-3 btn-sm fw-semibold">Ya, Hapus</button>
+
+          <div class="modal-footer border-top px-4 py-2">
+            <button type="button" class="btn btn-sm btn-light border px-3" data-bs-dismiss="modal">Batal</button>
+            <button type="submit" id="btnSubmitEdit" class="btn btn-sm btn-primary px-3">Perbarui Biodata</button>
           </div>
-        </div>
+        </form>
+
       </div>
     </div>
   </div>
 
-  <!-- Toast Container -->
-  <div class="toast-container position-fixed bottom-0 end-0 p-3">
-    <div id="liveToast" class="toast align-items-center text-white bg-dark border-0 rounded-3 shadow" role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="d-flex">
-        <div class="toast-body small" id="toastMessage">Notifikasi berhasil.</div>
-        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Floating Scroll-To-Top Button -->
-  <button id="btnScrollTop" class="btn btn-primary shadow rounded-circle position-fixed bottom-0 start-0 m-4 d-none" style="width: 44px; height: 44px; z-index: 1040;" title="Kembali ke atas">
-    <i class="bi bi-arrow-up"></i>
-  </button>
-
-  <!-- ================= FOOTER ================= -->
-  <footer class="mt-auto py-4 bg-dark text-white-50 border-top border-secondary">
-    <div class="container text-center">
-      <p class="mb-1 text-white small">
-        &copy; 2026 <strong>UTS Pemrograman Web</strong> &bull; Muhammad Ryan Rizki Iswadi (NIM: 24010110165)
-      </p>
-      <small class="text-muted">Dibangun dengan Bootstrap 5 &bull; Backend Flask REST API &bull; Repositori Publik GitHub</small>
-    </div>
-  </footer>
-
-  <!-- Bootstrap 5.3.3 JS Bundle CDN -->
+  <!-- Bootstrap 5.3 JS Bundle CDN -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <!-- Custom JS -->
   <script src="js/script.js"></script>

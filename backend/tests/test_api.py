@@ -5,7 +5,7 @@ import json
 from app import app
 from database import init_db
 
-class TestUTSAPIs(unittest.TestCase):
+class TestMemberAPIs(unittest.TestCase):
     def setUp(self):
         self.db_fd, self.db_path = tempfile.mkstemp()
         app.config['TESTING'] = True
@@ -22,55 +22,46 @@ class TestUTSAPIs(unittest.TestCase):
         os.close(self.db_fd)
         os.unlink(self.db_path)
 
-    def test_profile_endpoint(self):
-        res = self.client.get('/api/profile')
+    def test_member_crud(self):
+        # 1. List members (initial 2 members)
+        res = self.client.get('/api/members')
         self.assertEqual(res.status_code, 200)
         data = json.loads(res.data)
-        self.assertEqual(data['data']['nim'], '24010110165')
-        self.assertIn('Muhammad Ryan Rizki Iswadi', data['data']['nama'])
+        self.assertEqual(data['count'], 2)
+        self.assertEqual(data['data'][0]['name'], 'lalu revian firdaus')
+        self.assertEqual(data['data'][1]['name'], 'muhammad ryan rizki')
 
-    def test_task_crud_and_status(self):
-        # 1. List tasks
-        res = self.client.get('/api/tasks')
-        self.assertEqual(res.status_code, 200)
-        data = json.loads(res.data)
-        self.assertGreaterEqual(data['count'], 2)
-
-        # 2. Add new task
+        # 2. Add member
         payload = {
-            "name": "Muhammad Ryan Rizki Iswadi",
-            "nim": "24010110165",
-            "title": "Tugas Testing",
-            "category": "Testing",
-            "description": "Menjalankan unit test untuk backend Flask",
-            "status": "Sedang Dikerjakan"
+            "name": "Budi Santoso",
+            "nim": "24010110999",
+            "description": "dengan NIM 24010110999 merupakan dokumentasi dan testing pada UTS ini",
+            "photo": "img/default-avatar.svg"
         }
-        res = self.client.post('/api/tasks', json=payload)
+        res = self.client.post('/api/members', json=payload)
         self.assertEqual(res.status_code, 201)
         created = json.loads(res.data)['data']
-        task_id = created['id']
-        self.assertEqual(created['status'], 'Sedang Dikerjakan')
+        member_id = created['id']
 
-        # 3. Toggle status
-        res = self.client.put(f'/api/tasks/{task_id}/toggle-status')
+        # 3. Update member
+        update_payload = {
+            "name": "Budi Santoso Edit",
+            "nim": "24010110999",
+            "description": "Update deskripsi tugas"
+        }
+        res = self.client.put(f'/api/members/{member_id}', json=update_payload)
         self.assertEqual(res.status_code, 200)
         updated = json.loads(res.data)['data']
-        self.assertEqual(updated['status'], 'Selesai')
+        self.assertEqual(updated['name'], "Budi Santoso Edit")
 
-        # 4. Check stats
-        res = self.client.get('/api/stats')
+        # 4. Delete member
+        res = self.client.delete(f'/api/members/{member_id}')
         self.assertEqual(res.status_code, 200)
-        stats = json.loads(res.data)['data']
-        self.assertGreaterEqual(stats['total'], 3)
 
-        # 5. Export CSV
-        res = self.client.get('/api/tasks/export/csv')
-        self.assertEqual(res.status_code, 200)
-        self.assertIn('text/csv', res.headers.get('Content-Type', ''))
-
-        # 6. Delete task
-        res = self.client.delete(f'/api/tasks/{task_id}')
-        self.assertEqual(res.status_code, 200)
+        # 5. Verify count back to 2
+        res = self.client.get('/api/members')
+        data = json.loads(res.data)
+        self.assertEqual(data['count'], 2)
 
 if __name__ == '__main__':
     unittest.main()
