@@ -1,132 +1,204 @@
-/* CSS Persis Sesuai Gambar Referensi UTS Pem Web */
+:root {
+  --ink: #17243b;
+  --muted: #718096;
+  --line: #e8edf4;
+  --primary: #315efb;
+  --primary-dark: #244bd1;
+  --surface: #ffffff;
+  --page: #f5f7fb;
+}
+
+* { box-sizing: border-box; }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  color: #333333;
-  background-color: #ffffff;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--ink);
+  background: var(--page);
+  min-height: 100vh;
 }
 
-/* Navbar */
+.navbar {
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 2px 12px rgba(28, 45, 75, .035);
+}
+
+.navbar .container-fluid { max-width: 1320px; }
 .navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: .65rem;
+  color: var(--ink) !important;
   font-size: 1.05rem !important;
-  font-weight: 400 !important;
-  color: #212529 !important;
+  letter-spacing: -.025em;
 }
-
+.brand-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  color: #fff;
+  background: linear-gradient(135deg, #5278ff, #315efb);
+  border-radius: 11px;
+  font-size: 1rem;
+}
 .navbar .nav-link {
-  font-size: 0.875rem !important;
-  color: #6c757d !important;
-  padding-left: 0.75rem !important;
-  padding-right: 0.75rem !important;
-  transition: color 0.15s ease-in-out;
+  color: #68758b !important;
+  font-size: .9rem;
+  font-weight: 500;
+  padding: .55rem .8rem !important;
+  border-radius: 8px;
+  transition: color .2s ease, background .2s ease;
+}
+.navbar .nav-link:hover, .navbar .nav-link.active {
+  color: var(--primary) !important;
+  background: #f0f4ff;
 }
 
-.navbar .nav-link:hover {
-  color: #212529 !important;
+main .container-fluid, footer .container-fluid { max-width: 1140px; }
+.page-heading { display: flex; align-items: end; justify-content: space-between; }
+.eyebrow {
+  display: inline-block;
+  margin-bottom: .55rem;
+  color: var(--primary);
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: .14em;
 }
-
-.navbar .nav-link.active {
-  color: #212529 !important;
+.page-title {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(1.8rem, 4vw, 2.45rem);
+  font-weight: 750;
+  letter-spacing: -.055em;
 }
+.page-subtitle { margin: .55rem 0 0; color: var(--muted); font-size: .95rem; }
 
-/* Alert Banner */
 .alert-success {
-  background-color: #d1e7dd !important;
-  color: #0f5132 !important;
-  border: 1px solid #badbcc !important;
+  color: #176448 !important;
+  background: #e8f7f0 !important;
+  border: 1px solid #c9eddd !important;
 }
 
-/* Member Cards */
-.member-card {
-  border: 1px solid #e9ecef;
-  border-radius: 12px;
+.member-card, .card-add-member {
+  min-height: 440px;
   overflow: hidden;
-  background-color: #ffffff;
-  transition: box-shadow 0.2s ease;
-  min-height: 480px;
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  background: var(--surface);
+  box-shadow: 0 5px 20px rgba(35, 52, 82, .035);
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
 }
-
-.member-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+.member-card:hover, .card-add-member:hover {
+  transform: translateY(-4px);
+  border-color: #d8e1f2;
+  box-shadow: 0 15px 32px rgba(35, 52, 82, .09);
 }
-
 .member-card-img {
+  display: block;
   width: 100%;
-  height: 270px;
+  height: 250px;
   object-fit: cover;
-  object-position: center top;
-  background-color: #f8f9fa;
-  border-top-left-radius: 11px;
-  border-top-right-radius: 11px;
+  object-position: center 28%;
+  background: #edf1f7;
 }
-
 .member-card-body {
-  padding: 1.25rem 1.25rem 1rem 1.25rem;
   display: flex;
+  flex: 1;
   flex-direction: column;
-  flex-grow: 1;
+  padding: 1.35rem 1.4rem 1.25rem;
 }
-
 .member-name {
-  font-size: 0.95rem;
+  margin: 0 0 .35rem;
+  color: var(--ink);
+  font-size: 1.05rem;
+  font-weight: 750;
+  letter-spacing: -.02em;
+}
+.member-nim {
+  display: inline-flex;
+  align-self: flex-start;
+  margin-bottom: .85rem;
+  padding: .28rem .58rem;
+  color: #3155c9;
+  background: #eef2ff;
+  border-radius: 6px;
+  font-size: .72rem;
   font-weight: 700;
-  color: #212529;
-  margin-bottom: 0.5rem;
+  letter-spacing: .025em;
 }
-
 .member-desc {
-  font-size: 0.8125rem;
-  color: #6c757d;
-  line-height: 1.5;
-  margin-bottom: 1.5rem;
+  margin: 0 0 1.25rem;
+  color: #718096;
+  font-size: .85rem;
+  line-height: 1.65;
+  white-space: pre-line;
 }
-
-/* Action Buttons (Edit / Hapus) */
-.btn-action-group {
-  margin-top: auto;
-  display: flex;
-  gap: 6px;
-}
-
+.btn-action-group { display: flex; gap: .55rem; margin-top: auto; }
 .btn-card-action {
-  font-size: 0.75rem !important;
-  padding: 3px 12px !important;
-  border-radius: 4px !important;
-  line-height: 1.4 !important;
+  padding: .45rem .9rem !important;
+  border-radius: 8px !important;
+  font-size: .78rem !important;
+  font-weight: 650 !important;
 }
-
-/* Card Add Member (Plus Button) */
+.btn-outline-primary { color: var(--primary); border-color: #d6dfff; }
+.btn-outline-primary:hover { color: #fff; background: var(--primary); border-color: var(--primary); }
+.btn-outline-danger { border-color: #f1d7dc; }
 .card-add-member {
-  border: 1px solid #e9ecef;
-  border-radius: 12px;
-  min-height: 480px;
+  min-height: 440px;
+  border-style: dashed;
+  border-width: 2px;
+  border-color: #d8e1f2;
+  background: rgba(255,255,255,.65);
 }
-
 .btn-plus-circle {
-  width: 82px;
-  height: 82px;
-  border-radius: 50%;
-  background-color: #5cb85c;
-  border: none;
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  color: #fff;
+  background: linear-gradient(135deg, #5278ff, #315efb);
+  border: 0;
+  border-radius: 22px;
+  box-shadow: 0 10px 22px rgba(49, 94, 251, .22);
   cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  transition: transform .2s ease, box-shadow .2s ease;
 }
-
-.btn-plus-circle:hover {
-  background-color: #4cae4c;
-  transform: scale(1.06);
+.btn-plus-circle:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 14px 26px rgba(49,94,251,.3); }
+.btn-plus-circle i { font-size: 2rem; line-height: 1; }
+.card-add-member::after {
+  content: "Tambah anggota baru";
+  margin-top: 1rem;
+  color: #73819a;
+  font-size: .88rem;
+  font-weight: 600;
 }
+footer { color: var(--muted); }
+footer a { color: #718096 !important; transition: color .2s ease; }
+footer a:hover { color: var(--primary) !important; }
+footer hr { border-color: #dce3ed; }
 
-.btn-plus-circle i {
-  font-size: 46px;
-  line-height: 1;
+.modal-content { border-radius: 16px !important; }
+.form-control, .form-select {
+  min-height: 43px;
+  border-color: #dfe5ee;
+  border-radius: 9px;
+  font-size: .9rem;
 }
-
-/* Footer links */
-footer a {
-  transition: color 0.15s ease-in-out;
+.form-control:focus, .form-select:focus {
+  border-color: #9bb0ff;
+  box-shadow: 0 0 0 .2rem rgba(49,94,251,.1);
 }
+.modal .btn-primary { background: var(--primary); border-color: var(--primary); border-radius: 8px; }
+.modal .btn-primary:hover { background: var(--primary-dark); border-color: var(--primary-dark); }
 
-footer a:hover {
-  color: #212529 !important;
+@media (max-width: 767.98px) {
+  main { padding-top: 1.5rem !important; }
+  .member-card, .card-add-member { min-height: auto; }
+  .member-card-img { height: 235px; }
+  .card-add-member { min-height: 210px; }
+  .btn-plus-circle { width: 62px; height: 62px; border-radius: 18px; }
+  footer .d-flex { gap: 1rem !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
 }
