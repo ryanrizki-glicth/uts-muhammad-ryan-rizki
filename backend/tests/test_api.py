@@ -29,8 +29,8 @@ class TestUTSAPIs(unittest.TestCase):
         self.assertEqual(data['data']['nim'], '24010110165')
         self.assertIn('Muhammad Ryan Rizki Iswadi', data['data']['nama'])
 
-    def test_task_crud(self):
-        # 1. List tasks (pre-populated)
+    def test_task_crud_and_status(self):
+        # 1. List tasks
         res = self.client.get('/api/tasks')
         self.assertEqual(res.status_code, 200)
         data = json.loads(res.data)
@@ -40,17 +40,35 @@ class TestUTSAPIs(unittest.TestCase):
         payload = {
             "name": "Muhammad Ryan Rizki Iswadi",
             "nim": "24010110165",
-            "title": "Tugas Tambahan Testing",
+            "title": "Tugas Testing",
             "category": "Testing",
             "description": "Menjalankan unit test untuk backend Flask",
-            "status": "Selesai"
+            "status": "Sedang Dikerjakan"
         }
         res = self.client.post('/api/tasks', json=payload)
         self.assertEqual(res.status_code, 201)
         created = json.loads(res.data)['data']
         task_id = created['id']
+        self.assertEqual(created['status'], 'Sedang Dikerjakan')
 
-        # 3. Delete task
+        # 3. Toggle status
+        res = self.client.put(f'/api/tasks/{task_id}/toggle-status')
+        self.assertEqual(res.status_code, 200)
+        updated = json.loads(res.data)['data']
+        self.assertEqual(updated['status'], 'Selesai')
+
+        # 4. Check stats
+        res = self.client.get('/api/stats')
+        self.assertEqual(res.status_code, 200)
+        stats = json.loads(res.data)['data']
+        self.assertGreaterEqual(stats['total'], 3)
+
+        # 5. Export CSV
+        res = self.client.get('/api/tasks/export/csv')
+        self.assertEqual(res.status_code, 200)
+        self.assertIn('text/csv', res.headers.get('Content-Type', ''))
+
+        # 6. Delete task
         res = self.client.delete(f'/api/tasks/{task_id}')
         self.assertEqual(res.status_code, 200)
 

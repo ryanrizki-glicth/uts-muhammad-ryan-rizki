@@ -58,12 +58,26 @@ def init_db(db_path=None):
 
     conn.close()
 
-def get_all_tasks(db_path=None):
+def get_all_tasks(search=None, category=None, db_path=None):
     if db_path is None:
         db_path = DEFAULT_DB_PATH
     conn = get_connection(db_path)
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM tasks ORDER BY created_at DESC")
+    
+    query = "SELECT * FROM tasks WHERE 1=1"
+    params = []
+
+    if search:
+        query += " AND (title LIKE ? OR description LIKE ? OR category LIKE ?)"
+        wildcard = f"%{search}%"
+        params.extend([wildcard, wildcard, wildcard])
+
+    if category and category != 'Semua':
+        query += " AND category = ?"
+        params.append(category)
+
+    query += " ORDER BY created_at DESC"
+    cursor.execute(query, params)
     rows = cursor.fetchall()
     conn.close()
     return [dict(row) for row in rows]
@@ -91,6 +105,26 @@ def add_task(data, db_path=None):
     conn.close()
     return dict(row) if row else None
 
+def toggle_task_status(task_id, db_path=None):
+    if db_path is None:
+        db_path = DEFAULT_DB_PATH
+    conn = get_connection(db_path)
+    cursor = conn.cursor()
+    cursor.execute("SELECT status FROM tasks WHERE id = ?", (task_id,))
+    row = cursor.fetchone()
+    if not row:
+        conn.close()
+        return None
+    
+    current_status = row['status']
+    new_status = 'Sedang Dikerjakan' if current_status == 'Selesai' else 'Selesai'
+    cursor.execute("UPDATE tasks SET status = ? WHERE id = ?", (new_status, task_id))
+    conn.commit()
+    cursor.execute("SELECT * FROM tasks WHERE id = ?", (task_id,))
+    updated = cursor.fetchone()
+    conn.close()
+    return dict(updated) if updated else None
+
 def delete_task(task_id, db_path=None):
     if db_path is None:
         db_path = DEFAULT_DB_PATH
@@ -109,11 +143,20 @@ def get_stats(db_path=None):
     cursor = conn.cursor()
     cursor.execute("SELECT COUNT(*) as total FROM tasks")
     total = cursor.fetchone()['total']
+
+    cursor.execute("SELECT COUNT(*) as completed FROM tasks WHERE status = 'Selesai'")
+    completed = cursor.fetchone()['completed']
+
+    cursor.execute("SELECT COUNT(*) as in_progress FROM tasks WHERE status = 'Sedang Dikerjakan'")
+    in_progress = cursor.fetchone()['in_progress']
+
     cursor.execute("SELECT category, COUNT(*) as count FROM tasks GROUP BY category")
     by_category = {row['category']: row['count'] for row in cursor.fetchall()}
     conn.close()
     return {
         'total': total,
+        'completed': completed,
+        'in_progress': in_progress,
         'by_category': by_category,
         'mahasiswa': {
             'nama': 'Muhammad Ryan Rizki Iswadi',
